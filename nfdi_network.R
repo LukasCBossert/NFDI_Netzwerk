@@ -124,6 +124,7 @@ chord <- chorddiag(
 nfdi_network(nfdi_edges_2019,"2019")
 nfdi_network(nfdi_edges_2020,"2020")
 
-shell("mv 2019*.* 2019/")
+system("mv 2019*.* 2019/")
+system("mv 2020*.* 2020/")
 
 print('R done')
