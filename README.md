@@ -18,5 +18,5 @@ or execute the script `nfdi_network.R` with R.
 
 | 2019                                                                                                        | 2020                                                                                                        |
 |-------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------|
-| [![Network](2019/2019_nfdi_network_1.png "Network") ] (/2019/2019_nfdi_network_1.png)                       | [ ![Network](2020/2020_nfdi_network_1.png "Network") ] (/2020/2020_nfdi_network_1.png)                      |
-| [ ![Network](2019/2019_nfdi_network_3.png "Network (Community Detection)" ] (/2019/2019_nfdi_network_3.png) | [ ![Network](2020/2020_nfdi_network_3.png "Network (Community Detection)" ] (/2020/2020_nfdi_network_3.png) |
+| [![Network](2019/2019_nfdi_network_1.png "Network")](/2019/2019_nfdi_network_1.png)                       | [![Network](2020/2020_nfdi_network_1.png "Network")](/2020/2020_nfdi_network_1.png)                      |
+| [![Network](2019/2019_nfdi_network_3.png "Network (Community Detection)"](/2019/2019_nfdi_network_3.png) | [![Network](2020/2020_nfdi_network_3.png "Network (Community Detection)" ](/2020/2020_nfdi_network_3.png) |
