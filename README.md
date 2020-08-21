@@ -20,3 +20,4 @@ or execute the script `nfdi_network.R` with R.
 |-------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------|
 | [![Network](2019/2019_nfdi_network_1.png "Network")](/2019/2019_nfdi_network_1.png)                       | [![Network](2020/2020_nfdi_network_1.png "Network")](/2020/2020_nfdi_network_1.png)                      |
 | [![Network](2019/2019_nfdi_network_3.png "Network with Community Detection")](/2019/2019_nfdi_network_3.png) | [![Network](2020/2020_nfdi_network_3.png "Network with Community Detection")](/2020/2020_nfdi_network_3.png) |
+| [![Network](2019/2019_nfdi_network_4.png "Chorddiagram")](/2019/2019_nfdi_network_4.png) | [![Network](2020/2020_nfdi_network_4.png "Chorddiagram")](/2020/2020_nfdi_network_4.png) |
