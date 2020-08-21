@@ -6,6 +6,7 @@
 #!/usr/bin/env Rscript
 nfdi_currentpath <- getwd()
 setwd(nfdi_currentpath)
+set.seed(1)
 if (!require("pacman")) install.packages("pacman")
   pacman::p_load_current_gh("mattflor/chorddiag")
   pacman::p_load(dplyr, magrittr, ggplot2, tidyr, curl)
@@ -36,10 +37,10 @@ nfdi_network <- function(nfdi_section,nfdi_section_name) {
   nfdi_result
   nfdi_net <- graph_from_data_frame(nfdi_result, directed=F)
   E(nfdi_net)$width <- E(nfdi_net)$weight*20
-  graph_attr(nfdi_net, "layout") <- layout_with_dh
+  graph_attr(nfdi_net, "layout") <- layout_with_graphopt
   edge_attr(nfdi_net, "curved") <- 0.1
   edge_attr(nfdi_net, "color") <- "#808080"
-  vertex_attr(nfdi_net, "color") <- "#435FAC"
+  vertex_attr(nfdi_net, "color") <- adjustcolor("#435FAC", alpha.f = .5)
   vertex_attr(nfdi_net, "label.cex") <- 10
   vertex_attr(nfdi_net, "size") <- degree(nfdi_net)
   vertex_attr(nfdi_net, "label.degree") <- 1
@@ -53,7 +54,7 @@ nfdi_network <- function(nfdi_section,nfdi_section_name) {
   plot(nfdi_net_clp, nfdi_net)
   dev.off()
   V(nfdi_net)$community <- nfdi_net_clp$membership
-  nfdi_colrs <- adjustcolor( c("blue", "tomato", "gold", "yellowgreen"), alpha=1)
+  nfdi_colrs <- adjustcolor( c("blue", "tomato", "gold", "yellowgreen"), alpha.f = .5)
   vertex_attr(nfdi_net, "color") <- nfdi_colrs[V(nfdi_net)$community]
   nfdi_export_network("3.png")
   plot(nfdi_net)
