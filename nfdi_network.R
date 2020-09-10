@@ -23,6 +23,7 @@ library('magrittr')
 
 nfdi_edges_2019 <- read.csv("2019/nfdi_edges_2019.csv", header=T, as.is=T,)
 nfdi_edges_2020 <- read.csv("2020/nfdi_edges_2020.csv", header=T, as.is=T,)
+nfdi_edges_2020_numbers <- read.csv("2020/nfdi_edges_2020_numbers.csv", header=T, as.is=T,)
 nfdi_network <- function(nfdi_section,nfdi_section_name) {
   nfdi_export_network <- function(nfdi_number_suffix) {
     ExportFileName <- paste(nfdi_section_name,"/",nfdi_section_name,"_nfdi_network_",nfdi_number_suffix,sep="")
@@ -111,7 +112,7 @@ chord <- chorddiag(
   simpleNetwork(nfdi_section,
     # width=1200,
     # height=800,
-    linkDistance = 50,
+    linkDistance = 100,
     charge = -300,
     fontSize = 7,
     fontFamily = "Roboto",
@@ -122,8 +123,9 @@ chord <- chorddiag(
   ) %>%
    saveNetwork(file = nfdi_export_network_html)
 }
-nfdi_network(nfdi_edges_2019,"2019")
-nfdi_network(nfdi_edges_2020,"2020")
+# nfdi_network(nfdi_edges_2019,"2019")
+# nfdi_network(nfdi_edges_2020,"2020")
+nfdi_network(nfdi_edges_2020_numbers,"2020")
 
 system("mv 2019*.* 2019/")
 system("mv 2020*.* 2020/")
