@@ -6,7 +6,7 @@
 #!/usr/bin/env Rscript
 nfdi_currentpath <- getwd()
 setwd(nfdi_currentpath)
-set.seed(1)
+set.seed(42)
 if (!require("pacman")) install.packages("pacman")
   pacman::p_load_current_gh("mattflor/chorddiag")
   pacman::p_load(dplyr, magrittr, ggplot2, tidyr, curl)
