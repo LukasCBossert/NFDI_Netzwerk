@@ -6,7 +6,7 @@
 #!/usr/bin/env Rscript
 nfdi_currentpath <- getwd()
 setwd(nfdi_currentpath)
-set.seed(42)
+set.seed(4211)
 if (!require("pacman")) install.packages("pacman")
   pacman::p_load_current_gh("mattflor/chorddiag")
   pacman::p_load(dplyr, magrittr, ggplot2, tidyr, curl)
@@ -47,16 +47,19 @@ nfdi_network <- function(nfdi_section,nfdi_section_name) {
   vertex_attr(nfdi_net, "label.dist") <- .75
   vertex_attr(nfdi_net, "label.family") <- "Roboto"
   nfdi_export_network("1.png")
+  set.seed(4211)
   plot(nfdi_net)
   dev.off()
   nfdi_net_clp <- cluster_optimal(nfdi_net)
   nfdi_export_network("2.png")
+  set.seed(4211)
   plot(nfdi_net_clp, nfdi_net)
   dev.off()
   V(nfdi_net)$community <- nfdi_net_clp$membership
   nfdi_colrs <- adjustcolor( c("blue", "tomato", "gold", "yellowgreen"), alpha.f = .5)
   vertex_attr(nfdi_net, "color") <- nfdi_colrs[V(nfdi_net)$community]
   nfdi_export_network("3.png")
+  set.seed(4211)
   plot(nfdi_net)
   dev.off()
   nfdi_t1 <- graph.data.frame(nfdi_section, directed=FALSE)
