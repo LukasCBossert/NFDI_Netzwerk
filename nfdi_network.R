@@ -28,14 +28,14 @@ nfdi_network <- function(nfdi_section,nfdi_section_name) {
     ExportFileName <- paste(nfdi_section_name,"/",nfdi_section_name,"_nfdi_network_",nfdi_number_suffix,sep="")
     png(filename=ExportFileName,6000,6000)
   }
-  nfdi_net <- graph_from_data_frame(nfdi_section, directed=F)
+  nfdi_net <- graph_from_data_frame(nfdi_section, directed=T)
   nfdi_net <- simplify(nfdi_net,remove.multiple = F, remove.loops = T)
   nfdi_D <- data.frame(get.edgelist(nfdi_net))  # convert to data frame
   nfdi_ones <- rep(1, nrow(nfdi_D))   # a column of 1s
   nfdi_result <- aggregate(nfdi_ones, by = as.list(nfdi_D), FUN = sum)
   names(nfdi_result) <- c("from", "to", "weight")
   nfdi_result
-  nfdi_net <- graph_from_data_frame(nfdi_result, directed=F)
+  nfdi_net <- graph_from_data_frame(nfdi_result, directed=T)
   E(nfdi_net)$width <- E(nfdi_net)$weight*20
   graph_attr(nfdi_net, "layout") <- layout_with_graphopt
   edge_attr(nfdi_net, "curved") <- 0.1
@@ -48,7 +48,16 @@ nfdi_network <- function(nfdi_section,nfdi_section_name) {
   vertex_attr(nfdi_net, "label.family") <- "Roboto"
   nfdi_export_network("1.png")
   set.seed(4211)
-  plot(nfdi_net)
+inc.edges <- incident(nfdi_net,  V(nfdi_net)[=="Wall Street Journal"], mode="all")
+
+# Set colors to plot the selected edges.
+ecol <- rep("gray80", ecount(nfdi_net))
+ecol[inc.edges] <- "orange"
+vcol <- rep("grey40", vcount(nfdi_net))
+vcol[V(nfdi_net)$to=="Wall Street Journal"] <- "gold"
+plot(nfdi_net, vertex.color=vcol, edge.color=ecol)
+
+  # plot(nfdi_net)
   dev.off()
   nfdi_net_clp <- cluster_optimal(nfdi_net)
   nfdi_export_network("2.png")
@@ -125,10 +134,10 @@ chord <- chorddiag(
   ) %>%
    saveNetwork(file = nfdi_export_network_html)
 }
-nfdi_network(nfdi_edges_2019,"2019")
+# nfdi_network(nfdi_edges_2019,"2019")
 nfdi_network(nfdi_edges_2020,"2020")
 
-system("mv 2019*.* 2019/")
+# system("mv 2019*.* 2019/")
 system("mv 2020*.* 2020/")
 
 print('R done')
