@@ -1,3 +1,8 @@
+if (!require("igraph")) install.packages("igraph")
+library('igraph')
+
+
+NFDI_Netzwerk <- read.table(header=TRUE,sep=",",text="
 from,to
 BERD@NFDI,KonsortSWD
 BERD@NFDI,MaRDI
@@ -124,3 +129,46 @@ Text+,NFDI4Earth
 Text+,NFDI4Ing
 Text+,NFDI4Memory
 Text+,NFDI4Objects
+")
+
+# Daten werden konvertiert
+NFDI_graph <- graph.data.frame(NFDI_Netzwerk,directed=F)
+
+set.seed(123)
+plot(NFDI_graph,
+     frame=F,
+     # arrow.width=.5,
+     # margin=-.3,
+     # vertex.label.cex = 0.5,
+     vertex.size = .5*degree(NFDI_graph))
+
+
+# Jetzt wird Grafik/Netzwerk erzeigt
+png(filename="ExportFileName.png",1920,1280)
+plot(NFDI_graph,
+     frame=F,
+     # arrow.width=.5,
+     # margin=-.3,
+     # vertex.label.cex = 0.5,
+     vertex.size = .5*degree(NFDI_graph))
+dev.off()
+# --------------------------------------------------------------------------------------
+# Jetzt wird die Grafik / das Netzwerk erzeugt
+# Verbessertes Layout
+set.seed(123)
+plot(NFDI_graph,
+     layout = layout.graphopt,main="graphopt",
+     # layout=layout.fruchterman.reingold, main="fruchterman.reingold",
+     # layout=layout.circle, main="circle",
+     # layout=layout.sphere, main="sphere",
+     vertex.size = .5*degree(NFDI_graph),
+     vertex.label.cex = 0.5,
+     vertex.label.family = "Roboto",
+     vertex.label.color= "grey20",
+     vertex.frame.color = "#7b91ab",
+     edge.width = 1,
+     edge.color = "#7b91ab",
+     edge.curved = 0.1
+     )
+
+
